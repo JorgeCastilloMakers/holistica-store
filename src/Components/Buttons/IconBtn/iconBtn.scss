@@ -1,0 +1,13 @@
+.icon-btn{
+    border: none;
+    background-color: transparent;
+    font-size: 18px;
+    cursor: pointer;
+    transition: all 0.5s ease;
+     &:active{
+        transform: scale(0.8);
+     }
+     &:disabled{
+       color: rgb(110, 110, 110); 
+     }
+}

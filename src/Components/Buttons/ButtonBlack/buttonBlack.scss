@@ -1,0 +1,17 @@
+.btn-black {
+    font-family: var(--font-poppins);
+    background-color: var(--color-black);
+    color: #fafafa;
+    padding: 3% 15%;
+    border: 2px solid var(--color-black);
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 18px;
+    transition: all 0.4s ease-in;
+     &:hover{
+        background-color: #fafafa;
+        border: 2px solid var(--color-black);
+        color: var(--color-black);
+        font-weight: 400;
+     }
+}

@@ -1,0 +1,15 @@
+.btn-white {
+    font-family: var(--font-poppins);
+    background-color: transparent;
+    color: #fafafa;
+    padding: 2% 5%;
+    border: 2px solid #fafafa;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.5s ease-in;
+    font-size: 18px;
+
+    &:hover {
+        transform: translate3d(3px, -3px, 0);
+    }
+}

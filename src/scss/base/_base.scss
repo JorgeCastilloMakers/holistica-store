@@ -1,0 +1,14 @@
+
+html, body {
+    font-family: var(--font-serrat);
+}
+body{
+    overflow-x: hidden;
+}
+body::-webkit-scrollbar-thumb {
+  background-color: #000000;
+}
+html {
+  scroll-behavior: smooth;
+  
+}

@@ -1,0 +1,52 @@
+.card_product{
+    width: 100%;
+    max-width: 300px;
+    height: 100%;
+    max-height: 520px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+    flex: 1 1 200px;
+    box-shadow: 1px 4px 15px 0px rgba(0, 0, 0, 0.37);
+    gap: 10px;
+    border-radius: 5px;
+    padding: 1%;
+    transition: all 0.8s ease;
+    &_image_container{
+        max-width: 279px;
+        min-width: 279px;
+        max-height: 270px;
+        border-radius: 5px;
+        overflow: hidden;
+    }
+    &_image{
+        width: 100%;
+        min-height: 279px;
+        object-fit: cover;
+    }
+    &_category{
+        font-size: 15px;
+        text-transform: capitalize;
+        font-weight: 400;
+        font-style: italic;
+        color: var(--color-gold);
+    }
+    &_name{
+        font-size: 18px;
+        font-family: var(--font-play);
+        text-align: center;
+        font-weight: 900;
+        text-transform: capitalize;
+        height: 36px;
+    }
+    &_price{
+        font-size: 35px;
+        font-weight: 900;
+        text-align: center;
+    }
+
+    &:hover{
+        transform: translateY(-5px);
+    }
+}

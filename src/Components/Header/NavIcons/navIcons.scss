@@ -1,0 +1,139 @@
+.nav-icon{
+    display: flex;
+    height: 100%;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 10px;
+    position: relative;
+}
+
+.icon{
+    color: #fafafa;
+    font-size: 25px;
+    position: relative;
+    bottom: 5px;
+    cursor: pointer;
+    transition: all 0.5s ease;
+    &:active{
+        transform: scale(0.8);
+    }
+
+}
+
+#burger-menu{
+    display: none;
+cursor: pointer;
+  height: 32px;
+  width: 32px;
+  overflow: visible;
+  position: relative;
+  bottom: 3px;
+  z-index:2;
+}
+#burger-menu span,
+#burger-menu span:before,
+#burger-menu span:after {
+  background: #fff;
+  display: block;
+  height: 2px;
+  opacity: 1;
+  position: absolute;
+  transition: 0.3s ease-in-out;
+}
+#burger-menu span:before,
+#burger-menu span:after {
+  content: "";
+}
+#burger-menu span {
+  right: 0px;
+  top: 13px;
+  width: 27px;
+}
+#burger-menu span:before {
+  left: 0px;
+  top: -10px;
+  width: 16px;
+}
+#burger-menu span:after {
+  left: 0px;
+  top: 10px;
+  width: 20px;
+}
+
+#burger-menu.close span {
+  transform: rotate(-45deg);
+  top: 13px;
+  width: 27px;
+}
+#burger-menu.close span:before {
+  top: 0px;
+  transform: rotate(90deg);
+  width: 27px;
+}
+#burger-menu.close span:after {
+  top: 0px;
+  left:0;
+  transform: rotate(90deg);
+  opacity:0;
+  width:0;
+}
+
+#menu{
+  z-index:1;
+  min-width:100%;
+  min-height:100%;
+  position: fixed;
+  top:0;
+  left: 0;
+  height:0;
+  visibility: hidden;
+  opacity: 0;
+  text-align:center;
+  padding-top:20px;
+  transition: all 0.3s ease-in-out;
+  background-color: black;
+  
+}
+
+#menu.overlay{
+  visibility: visible;
+  opacity: 1;
+  background:rgb(0, 0, 0);
+  width: 100%;
+  height: 100%;
+  left: 0;
+    text-align: center;
+    align-items: flex-start;
+    justify-content: center;
+    display: flex;
+}
+
+#menu ul{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 10%;
+    padding-left: 5%;
+    gap: 80px;
+    background-color: black;
+}
+#menu a{
+  font-family: var(--font-serrat);
+  font-weight: 200;
+  letter-spacing: 15px;
+  text-align: left;
+  color:#fff;
+  display:block;
+  font-size: 32px;
+  margin-bottom:30px;
+  text-decoration:none;
+}
+
+@media (max-width: 878px){
+    #burger-menu{
+        display: block;
+    }
+}
