@@ -12,6 +12,7 @@ export const Products = () => {
     const [currentPage, setCurrentPage] = useState(1);
     const productsPerPage = 8;
     const [categoryFilter, setCategoryFilter] = useState("Todos");
+
     useEffect(() => {
 
         if (products.length > 0) {
@@ -23,17 +24,6 @@ export const Products = () => {
     const filteredProducts = categoryFilter === "Todos"
         ? products
         : products.filter(product => (product.category).toUpperCase() === (categoryFilter).toUpperCase());
-
-    //manejo de checkboxs seleccionados
-    const [selectedFilters, setSelectedFilters] = useState([]);
-
-    const handleFilterSelect = (filter) => {
-        if (selectedFilters.includes(filter)) {
-            setSelectedFilters(selectedFilters.filter((f) => f !== filter));
-        } else {
-            setSelectedFilters([...selectedFilters, filter]);
-        }
-    };
 
 
     const indexOfLastProduct = currentPage * productsPerPage;
@@ -58,7 +48,7 @@ export const Products = () => {
         <section className="products">
             <h2 className='products_title'>Productos</h2>
             <div className='container'>
-                <Filtros setCategoryFilter={setCategoryFilter} handleFilterSelect={handleFilterSelect}></Filtros>
+                <Filtros setCategoryFilter={setCategoryFilter} categoryFilter={categoryFilter}></Filtros>
                 <div className="products_card_container">
                     {isLoading ? (
                         <div className='products_card_loader'>
