@@ -2,42 +2,70 @@ import { Footer } from './Components/Footer/Footer.jsx';
 import { Header } from './Components/Header/Header.jsx';
 import { Logo } from './Components/Header/Logo/Logo.jsx'
 import { Nav } from './Components/Header/Nav/Nav.jsx'
-import { NavItem } from './Components/Header/Nav/NavItem/NavItem.jsx';
-import { NavIcons } from './Components/Header/NavIcons/NavIcons.jsx';
 import { Layout } from './Components/Layout/Layout.jsx';
-// import { Loader } from './Components/Loader/Loader.jsx';
 import { Home } from './Components/Pages/Home/Home.jsx';
-import { useProductsList } from './Hooks/useProductsList.js';
 import { Route, Routes } from 'react-router-dom';
 import { Products } from './Components/Pages/Products/Products.jsx';
+import { Provider } from 'react-redux';
+import { createStoreAsync } from './Store/index.js';
+import { useEffect, useState } from "react";
+import { CartPage } from './Components/Pages/CartPage/CartPage.jsx';
+import { useLocation } from 'react-router-dom';
 
+
+
+//funcion para que al cambiar de ruta el scroll vuelva hacia arriba
+const ScrollToTop = () => {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
+  return null;
+};
 
 
 const App = () => {
-  const products = useProductsList();
+  const [loading, setLoading] = useState(true);
+  const [store, setStore] = useState(null);
+
+  //hago la precarga del store por la demora que genera el get de firebase
+  useEffect(() => {
+    createStoreAsync().then((store) => {
+      setStore(store);
+      setLoading(false);
+    });
+  }, []);
+
+  if (loading) {
+    //hacer un loader lindo
+    return <p>Loading...</p>;
+  }
 
   return (
     <>
-      <Layout>
-        {/* <Loader></Loader> */}
-
-        <Header>
-          <Logo />
-          <Nav>
-            <NavItem href={"/"}>Home</NavItem>
-            <NavItem href={"#aboutUs"}>Nosotros</NavItem>
-            <NavItem href={"/products"}>Productos</NavItem>
-            <NavItem href={"#contact"}>Contacto</NavItem>
-            <NavIcons />
-          </Nav>
-        </Header>
-        <Routes>
-          <Route path='/' element={<Home />} />
-          <Route path='/products' element={<Products></Products>} />
-        </Routes>
-        <Footer></Footer>
-
-      </Layout>
+      <Provider store={store}>
+        <ScrollToTop />
+        <Layout>
+          <Header>
+            <Logo />
+            <Nav
+              homeLink="/"
+              aboutLink="/#aboutUs"
+              productsLink="/products"
+              contactLink="/#contact"
+              cartLink="/cart"
+            />
+          </Header>
+          <Routes>
+            <Route path='/' element={<Home />} />
+            <Route path='/products' element={<Products></Products>} />
+            <Route path='/cart' element={<CartPage></CartPage>} />
+          </Routes>
+          <Footer></Footer>
+        </Layout>
+      </Provider>
     </>
   )
 }

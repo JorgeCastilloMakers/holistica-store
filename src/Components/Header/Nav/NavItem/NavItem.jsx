@@ -1,9 +1,11 @@
 import './navItem.scss'
+import { Link } from 'react-router-dom';
 
-export const NavItem = ({ children, href, onClick }) => {
+export const NavItem = ({ children, to, href }) => {
+
     return (
         <>
-            <li className='nav_list'><a className='nav_item' href={href} onClick={onClick}>{children}</a></li>
+            <li className='nav_list'><Link className='nav_item' href={href} to={to}>{children}</Link></li>
         </>
     )
 }

@@ -1,0 +1,36 @@
+.breadcrums{
+    display: flex;
+    width: 100%;
+    height: 100%;
+    padding-left: 6%;
+    padding-bottom: 2%;
+    justify-content: flex-start;
+    align-items: flex-start;
+
+    &_title{
+        font-weight: 300;
+        font-style: italic;
+        font-size: 15px;
+    }
+    &_category{
+        font-weight: 300;
+        font-style: italic;
+        font-size: 15px;
+    }
+    &_product{
+        font-weight: 700;
+        font-style: italic;
+        font-size: 15px;
+    }
+}
+
+.color{
+    color: var(--color-gold);
+        font-weight: 700;
+        font-style: italic;
+        font-size: 15px;
+}
+
+.link{
+    cursor: pointer;
+}

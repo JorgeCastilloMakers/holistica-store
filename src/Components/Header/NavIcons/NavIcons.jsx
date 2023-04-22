@@ -2,9 +2,10 @@ import { AiOutlineUser, AiOutlineShoppingCart } from "react-icons/ai";
 import './navIcons.scss'
 import { useState } from 'react';
 import { NavItem } from '../Nav/NavItem/NavItem';
+import { Link } from 'react-router-dom';
 
 
-export const NavIcons = () => {
+export const NavIcons = ({ to }) => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const toggleMenu = () => {
         setIsMenuOpen(!isMenuOpen);
@@ -22,7 +23,7 @@ export const NavIcons = () => {
         <>
             <div className="nav-icon">
                 <AiOutlineUser className="icon" />
-                <AiOutlineShoppingCart className="icon" />
+                <Link to={to}><AiOutlineShoppingCart className="icon" /></Link>
                 <div id="burger-menu" className={isMenuOpen ? 'close' : ''} onClick={toggleMenu}>
                     <span></span>
                 </div>

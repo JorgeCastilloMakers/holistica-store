@@ -1,8 +1,11 @@
-import {configureStore} from '@reduxjs/toolkit'
-import reducer from '../Reducers';
 
-export const store = configureStore({reducer});
+import { createStore } from 'redux';
+import { cartReducer } from '../Reducers/cartReducer';
+import { getProducts } from '../Utils/getProductsFromFB';
 
-store.subscribe(() => console.log(store))
-
-export default store;
+export const createStoreAsync = async () => {
+  const products = await getProducts();
+  const initialState = { products, cart: [] };
+  const store = createStore(cartReducer, initialState);
+  return store;
+};

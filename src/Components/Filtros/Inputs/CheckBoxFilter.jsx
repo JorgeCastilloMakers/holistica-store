@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import './checkBox.scss'
 
-export const CheckBoxFilter = ({ children, setCategoryFilter, categoryFilter }) => {
+export const CheckBoxFilter = ({ children, setCategoryFilter, categoryFilter, setShowDetails }) => {
 
     const checkSelected = (e) => {
         if (e.target.checked) {

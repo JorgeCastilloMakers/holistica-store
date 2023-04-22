@@ -5,6 +5,9 @@ import { useState, useEffect } from 'react'
 import loaderGif from '../../../assets/Images/loader.gif'
 import { Filtros } from '../../Filtros/Filtros';
 import { PaginationProducts } from '../../Pagination/PaginationProducts';
+import { ProductDetails } from '../../ProductDetails/ProductDetails.jsx'
+import { Breadcrums } from '../../BreadCrums/BreadCrums';
+import Cart from '../../Cart/Cart';
 
 export const Products = () => {
     const [isLoading, setIsLoading] = useState(true);
@@ -12,6 +15,8 @@ export const Products = () => {
     const [currentPage, setCurrentPage] = useState(1);
     const productsPerPage = 8;
     const [categoryFilter, setCategoryFilter] = useState("Todos");
+    const [showDetails, setShowDetails] = useState(false);
+    const [selectedProduct, setSelectedProduct] = useState({})
 
     useEffect(() => {
 
@@ -26,6 +31,7 @@ export const Products = () => {
         : products.filter(product => (product.category).toUpperCase() === (categoryFilter).toUpperCase());
 
 
+    //paginacion
     const indexOfLastProduct = currentPage * productsPerPage;
     const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
     const currentProducts = filteredProducts.slice(indexOfFirstProduct, indexOfLastProduct);
@@ -48,23 +54,49 @@ export const Products = () => {
         <section className="products">
             <h2 className='products_title'>Productos</h2>
             <div className='container'>
-                <Filtros setCategoryFilter={setCategoryFilter} categoryFilter={categoryFilter}></Filtros>
-                <div className="products_card_container">
-                    {isLoading ? (
-                        <div className='products_card_loader'>
-                            <img className='products_card_loader_img' src={loaderGif} alt="" />
-                            <h3 className='product_card_loader_text'>Cargando Productos</h3>
-                        </div>
-                    ) :
-                        (
-                            <div className='card_container'>
-                                {currentProducts.map(product => (
-                                    <CardProduct key={product.id} {...product}></CardProduct>
-                                ))}
-                            </div>
-                        )
+                {!showDetails &&
+                    <Filtros
+                        setCategoryFilter={setCategoryFilter}
+                        categoryFilter={categoryFilter}
+                        setShowDetails={setShowDetails} />
+                }
 
-                    }
+                <div className="products_card_container">
+                    <Cart></Cart>
+                    <Breadcrums
+                        categoryFilter={categoryFilter}
+                        showDetails={showDetails}
+                        setShowDetails={setShowDetails}
+                        cardData={selectedProduct}
+                        setSelectedProduct={setSelectedProduct} >
+
+                    </Breadcrums>
+                    {showDetails ? (
+                        <div>
+                            <ProductDetails cardData={selectedProduct} />
+                        </div>
+                    ) : (
+                        <div className='card_container' >
+                            {isLoading ? (
+                                <div className='products_card_loader'>
+                                    <img className='products_card_loader_img' src={loaderGif} alt="" />
+                                    <h3 className='product_card_loader_text'>Cargando Productos</h3>
+                                </div>
+                            ) : (
+                                <div className='card_container'>
+                                    {currentProducts.map(product => (
+                                        <CardProduct
+                                            showDetails={showDetails}
+                                            setShowDetails={setShowDetails}
+                                            setSelectedProduct={setSelectedProduct}
+                                            selectedProduct={selectedProduct}
+                                            key={product.id} {...product}>
+                                        </CardProduct>
+                                    ))}
+                                </div>
+                            )}
+                        </div>
+                    )}
                     <PaginationProducts
                         prevPage={prevPage}
                         nextPage={nextPage}

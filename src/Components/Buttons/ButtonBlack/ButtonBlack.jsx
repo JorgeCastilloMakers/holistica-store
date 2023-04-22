@@ -1,7 +1,12 @@
-import './buttonBlack.scss'
+import './buttonBlack.scss';
 
-export const ButtonBlack = ({ children }) => {
+
+export const ButtonBlack = ({ children, onClick }) => {
+
+
+
+
     return (
-        <button className='btn-black'>{children}</button>
+        <button onClick={onClick} className='btn-black'>{children}</button>
     )
 }
