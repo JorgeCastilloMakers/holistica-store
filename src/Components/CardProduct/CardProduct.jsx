@@ -13,8 +13,7 @@ export const CardProduct = ({ image, category, name, price, scent, description, 
 
     const handleClick = () => {
         if (scent[0] === "") {
-            dispatch(addToCart(id, "Sin aroma"))
-            console.log("add")
+            dispatch(addToCart(id, "Sin aroma", 1))
 
         } else {
             setShowDetails(true)
@@ -27,6 +26,7 @@ export const CardProduct = ({ image, category, name, price, scent, description, 
                 description,
                 id
             })
+
 
         }
 

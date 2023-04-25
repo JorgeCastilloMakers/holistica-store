@@ -3,10 +3,11 @@ import './navIcons.scss'
 import { useState } from 'react';
 import { NavItem } from '../Nav/NavItem/NavItem';
 import { Link } from 'react-router-dom';
-
+import { useSelector } from 'react-redux';
 
 export const NavIcons = ({ to }) => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const cart = useSelector(state => state.cart);
     const toggleMenu = () => {
         setIsMenuOpen(!isMenuOpen);
     };
@@ -23,7 +24,7 @@ export const NavIcons = ({ to }) => {
         <>
             <div className="nav-icon">
                 <AiOutlineUser className="icon" />
-                <Link to={to}><AiOutlineShoppingCart className="icon" /></Link>
+                <Link to={to}><span className="cartQuantity">{cart.length}</span><AiOutlineShoppingCart className="icon" /></Link>
                 <div id="burger-menu" className={isMenuOpen ? 'close' : ''} onClick={toggleMenu}>
                     <span></span>
                 </div>

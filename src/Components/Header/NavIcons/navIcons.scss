@@ -132,6 +132,23 @@ cursor: pointer;
   text-decoration:none;
 }
 
+.cartQuantity{
+  position: absolute;
+  top: 20%;
+  left: 80%;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fafafa;
+  font-size: 12px;
+  background-color: var(--color-gold);
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+}
+
+
 @media (max-width: 878px){
     #burger-menu{
         display: block;

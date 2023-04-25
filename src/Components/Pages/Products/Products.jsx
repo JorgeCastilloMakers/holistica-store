@@ -62,7 +62,6 @@ export const Products = () => {
                 }
 
                 <div className="products_card_container">
-                    <Cart></Cart>
                     <Breadcrums
                         categoryFilter={categoryFilter}
                         showDetails={showDetails}
@@ -97,12 +96,14 @@ export const Products = () => {
                             )}
                         </div>
                     )}
-                    <PaginationProducts
-                        prevPage={prevPage}
-                        nextPage={nextPage}
-                        totalPages={totalPages}
-                        currentPage={currentPage}>
-                    </PaginationProducts>
+                    {!showDetails &&
+                        <PaginationProducts
+                            prevPage={prevPage}
+                            nextPage={nextPage}
+                            totalPages={totalPages}
+                            currentPage={currentPage}>
+                        </PaginationProducts>
+                    }
                 </div>
             </div>
         </section>

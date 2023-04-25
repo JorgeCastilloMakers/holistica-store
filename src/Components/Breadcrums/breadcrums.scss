@@ -11,16 +11,19 @@
         font-weight: 300;
         font-style: italic;
         font-size: 15px;
+        text-transform: capitalize;
     }
     &_category{
         font-weight: 300;
         font-style: italic;
         font-size: 15px;
+        text-transform: capitalize;
     }
     &_product{
         font-weight: 700;
         font-style: italic;
         font-size: 15px;
+        text-transform: capitalize;
     }
 }
 
@@ -33,4 +36,5 @@
 
 .link{
     cursor: pointer;
+    text-transform: capitalize;
 }

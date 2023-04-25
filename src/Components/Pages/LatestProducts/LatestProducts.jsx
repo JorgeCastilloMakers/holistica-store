@@ -5,7 +5,8 @@ import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css'
 import { useState, useEffect } from 'react'
 
-export const LatestProducts = () => {
+
+export const LatestProducts = ({ setShowDetails, setSelectedProduct }) => {
     const [isLoading, setIsLoading] = useState(true);
     const products = useProductsList();
     const randomIndex = Math.floor(Math.random() * products.length);
@@ -31,10 +32,11 @@ export const LatestProducts = () => {
                 ) : (
                     <>
                         {products.length > 0 && (
+
                             <>
-                                <CardProduct key={products[randomIndex].id} {...products[randomIndex]} />
-                                <CardProduct key={products[(randomIndex + 1) % products.length].id} {...products[(randomIndex + 1) % products.length]} />
-                                <CardProduct key={products[(randomIndex + 2) % products.length].id} {...products[(randomIndex + 2) % products.length]} />
+                                <CardProduct setSelectedProduct={setSelectedProduct} setShowDetails={setShowDetails} key={products[randomIndex].id} {...products[randomIndex]} />
+                                <CardProduct setSelectedProduct={setSelectedProduct} setShowDetails={setShowDetails} key={products[(randomIndex + 1) % products.length].id} {...products[(randomIndex + 1) % products.length]} />
+                                <CardProduct setSelectedProduct={setSelectedProduct} setShowDetails={setShowDetails} key={products[(randomIndex + 2) % products.length].id} {...products[(randomIndex + 2) % products.length]} />
                             </>
                         )}
                     </>

@@ -1,0 +1,128 @@
+.detailsCard{
+    display: flex;
+    width: 100%;
+    height: 100%;
+    padding: 6%;
+    justify-content: center;
+    align-items: flex-start;
+    background-image: url("../../assets/Images/holistica-logo.png");
+    background-size: 150px;
+
+        &_image{
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            max-width: 450px;
+            overflow: hidden;
+            border-radius: 5px;
+            padding-top: 5%;
+
+        }
+        &_img{
+            width: 100%;
+        }
+        &_info{
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            padding: 1%;
+            gap: 10px;
+        }
+        &_category{
+            color: var(--color-gold);
+            font-style: italic;
+            font-weight: 500;
+            text-transform: capitalize;
+            font-size: 16px;
+        }
+        &_name{
+            font-family: var(--font-play);
+            font-size: 30px;
+            font-weight: 900;
+            letter-spacing: 2px;
+        }
+        &_description{
+            width: 100%;
+            padding-right: 20%;
+            font-weight: 400;
+            line-height: 25px;
+        }
+        &_quantity{
+            display: flex;
+            width: 100%;
+            justify-content: space-between;
+            align-items: center;
+            padding-right: 5%;
+            &_handlers{
+                display: flex;
+                width: 100%;
+                height: 100%;
+                justify-content: flex-start;
+                align-items: center;
+                gap: 15px;
+                font-weight: 600;
+                &_span{
+                    width: 10%;
+                }
+                &_btn{
+                    display: flex;
+                    width: 20%;
+                    height: 100%;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+                    gap: 1px;
+                }
+                &_button{
+                    border: none;
+                    background-color: transparent;
+                    font-size: 18px;
+                    cursor: pointer;
+                    transition: all 0.5s ease;
+                        &:active{
+                            transform: scale(0.8);
+                            color: var(--color-gold);
+                        }
+                        &:disabled{
+                        color: rgb(110, 110, 110); 
+                        }
+                }
+            }
+            &_price{
+                width: 100%;
+                display: flex;
+                justify-content: flex-end;
+                align-items: center;
+                font-weight: 900;
+                font-size: 35px;
+            }
+        }
+        &_scent_add{
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            &_label{
+                width: 100%;
+                display: flex;
+                align-items: flex-start;
+                gap: 10px;
+                font-weight: 600;
+            }
+            &_select{
+                border: none;
+                outline: none;
+                font-family: var(--font-serrat);
+            }
+            &_btnAdd{
+                width: 100%;
+                display: flex;
+                justify-content: flex-end;
+                padding-right: 5%;
+            }
+        }
+}
+
