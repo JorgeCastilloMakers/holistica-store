@@ -1,12 +1,16 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { ButtonBlack } from '../Buttons/ButtonBlack/ButtonBlack';
 import { useDispatch } from 'react-redux'
 import { addToCart } from '../../Actions/cartActions.js'
 import './productDetails.scss'
 import { TbSquareRoundedChevronDown, TbSquareRoundedChevronUp } from "react-icons/tb";
+import { Modalmessage } from '../ModalMessage/Modalmessage';
 
 
 export const ProductDetails = ({ cardData }) => {
+    const [showModal, setShowModal] = useState(false);
+    const [modalMessage, setModalMessage] = useState("");
+
 
     const { category, description, image, name, price, scent, id } = cardData;
 
@@ -20,8 +24,13 @@ export const ProductDetails = ({ cardData }) => {
         } else if (selectedScent) {
             dispatch(addToCart(id, selectedScent, quantity))
         } else {
-            console.log("Please select a scent")
+            setShowModal(true);
+            setModalMessage("Debes elegir un aroma");
+            return;
+
         }
+        setShowModal(true);
+        setModalMessage("Producto añadido al carrito");
 
     }
 
@@ -36,8 +45,21 @@ export const ProductDetails = ({ cardData }) => {
         }
     }
 
+    useEffect(() => {
+        if (showModal) {
+            setTimeout(() => {
+                setShowModal(false);
+                setModalMessage("");
+            }, 2000);
+        }
+    }, [showModal]);
     return (
+
         <div className='detailsCard'>
+            {showModal && (
+                <Modalmessage message={modalMessage} />
+            )}
+
             <div className='detailsCard_image'>
                 <img className='detailsCard_img' src={image} alt={name} />
             </div>

@@ -2,7 +2,9 @@ import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { AiFillDelete } from "react-icons/ai";
 import { removeFromCart, resetCart, addToCart, removeAllFromCart } from '../../Actions/cartActions.js'
-
+import './cart.scss'
+import { CartItems } from './CartItems/CartItems.jsx';
+import { ButtonBW } from '../Buttons/ButtonBW/ButtonBW.jsx'
 
 const Cart = () => {
     const dispatch = useDispatch();
@@ -40,30 +42,47 @@ const Cart = () => {
     }
 
     return (
-        <div>
-            <h2>Cart</h2>
-            {cart.length === 0 ?
-                <p>Your cart is empty.</p> :
-                <ul>
-                    {cart.map(item => (
-                        <li key={`${item.id}-${item.scent}`}>
-                            <p>{item.name}</p>
-                            <p>Quantity: {item.quantity}</p>
-                            <p>Price: {item.price}</p>
-                            <p>Scent: {item.scent}</p>
+        <div className='cart_page'>
+            <h2 className='cart_page_title'>Carrito</h2>
+            <div className="cart">
+                <div className="cart_heads">
+                    <h3 className='cart_heads_titles'>ID</h3>
+                    <h3 className='cart_heads_titles'>PRODUCTO</h3>
+                    <h3 className='cart_heads_titles'>CANTIDAD</h3>
+                    <h3 className='cart_heads_titles price'>PRECIO</h3>
+                </div>
+                <div className="cart_itemsContainer">
 
-                            <button onClick={() => addOneProduct(item.id, item.scent)}>sumar</button>
-                            <button onClick={() => item.quantity > 1 ? deleteOneFromCart(item.id) : confirmDelete(item.id)}>restar</button>
-                            <button onClick={() => deleteAllFromCart(item.id, item.scent)}>
-                                <AiFillDelete /></button>
-                        </li>
+                    {cart.length === 0 ?
+                        <p>Your cart is empty.</p> :
+                        <ul className="cart_itemsContainer_list">
+                            {cart.map(item => (
+                                <CartItems
+                                    clave={`${item.id}+${item.scent}`}
+                                    id={item.id}
+                                    name={item.name}
+                                    image={item.image}
+                                    scent={item.scent}
+                                    quantity={item.quantity}
+                                    price={item.price}
+                                ></CartItems>
+                            ))}
+                        </ul>
+                    }
+                </div>
+                <div className='cart_foot'>
+                    <button className='cart_foot_btnReset' onClick={() => cartReset()}><AiFillDelete />Vaciar Carrito</button>
+                    <div className='cart_foot_total'>
+                        <h3 className='cart_foot_total_price'>Total: $ {cartTotal()}</h3>
+                        <ButtonBW>Seguir Comprando</ButtonBW>
+                        <button className='cart_foot_total_btnPay'>PAGAR</button>
+                    </div>
 
-                    ))}
-                </ul>
+                </div>
 
-            }
-            <h3>Total: $ {cartTotal()}</h3>
-            <button onClick={() => cartReset()}>resetear carrito</button>
+
+            </div>
+
         </div>
     );
 }

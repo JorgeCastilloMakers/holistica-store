@@ -7,7 +7,7 @@ import { Filtros } from '../../Filtros/Filtros';
 import { PaginationProducts } from '../../Pagination/PaginationProducts';
 import { ProductDetails } from '../../ProductDetails/ProductDetails.jsx'
 import { Breadcrums } from '../../BreadCrums/BreadCrums';
-import Cart from '../../Cart/Cart';
+import { Modalmessage } from '../../ModalMessage/Modalmessage.jsx';
 
 export const Products = () => {
     const [isLoading, setIsLoading] = useState(true);
@@ -17,6 +17,8 @@ export const Products = () => {
     const [categoryFilter, setCategoryFilter] = useState("Todos");
     const [showDetails, setShowDetails] = useState(false);
     const [selectedProduct, setSelectedProduct] = useState({})
+    const [showModal, setShowModal] = useState(false);
+    const [modalMessage, setModalMessage] = useState("");
 
     useEffect(() => {
 
@@ -49,10 +51,22 @@ export const Products = () => {
             setCurrentPage(currentPage - 1);
         }
     };
+    useEffect(() => {
+        if (showModal) {
+            setTimeout(() => {
+                setShowModal(false);
+                setModalMessage("");
+            }, 2000);
+        }
+    }, [showModal]);
+
 
     return (
         <section className="products">
             <h2 className='products_title'>Productos</h2>
+            {showModal && (
+                <Modalmessage message={modalMessage} />
+            )}
             <div className='container'>
                 {!showDetails &&
                     <Filtros
@@ -89,6 +103,8 @@ export const Products = () => {
                                             setShowDetails={setShowDetails}
                                             setSelectedProduct={setSelectedProduct}
                                             selectedProduct={selectedProduct}
+                                            setModalMessage={setModalMessage}
+                                            setShowModal={setShowModal}
                                             key={product.id} {...product}>
                                         </CardProduct>
                                     ))}

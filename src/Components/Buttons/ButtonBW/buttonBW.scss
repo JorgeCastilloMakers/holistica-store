@@ -2,17 +2,17 @@
     font-family: var(--font-poppins);
     background-color: #fafafa;
     color: var(--color-black);
-    padding: 1% 2%;
-    border: 2px solid var(--color-black);
+    padding: 3% 2%;
+    border: 1px solid var(--color-black);
     border-radius: 5px;
     cursor: pointer;
     transition: all 0.5s ease-in;
     font-weight: 500;
-
+    font-size: 16px;
     &:hover {
         color: #fafafa;
         background-color: var(--color-black);
-        transform: translateY(-3px);
+        transform: translateY(-1px);
         box-shadow: 1px 5px 15px 0px rgb(227, 227, 227);
     }
 }

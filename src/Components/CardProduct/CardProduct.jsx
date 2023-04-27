@@ -7,14 +7,15 @@ import { addToCart } from '../../Actions/cartActions.js'
 
 
 
-export const CardProduct = ({ image, category, name, price, scent, description, id, setShowDetails, setSelectedProduct }) => {
+export const CardProduct = ({ image, category, name, price, scent, description, id, setShowDetails, setSelectedProduct, setModalMessage, setShowModal }) => {
     const dispatch = useDispatch();
 
 
     const handleClick = () => {
         if (scent[0] === "") {
             dispatch(addToCart(id, "Sin aroma", 1))
-
+            setShowModal(true);
+            setModalMessage("Producto añadido al carrito");
         } else {
             setShowDetails(true)
             setSelectedProduct({

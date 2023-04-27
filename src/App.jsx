@@ -14,6 +14,7 @@ import { useLocation } from 'react-router-dom';
 
 
 
+
 //funcion para que al cambiar de ruta el scroll vuelva hacia arriba
 const ScrollToTop = () => {
   const { pathname } = useLocation();
@@ -63,8 +64,10 @@ const App = () => {
             <Route path='/products' element={<Products></Products>} />
             <Route path='/cart' element={<CartPage></CartPage>} />
           </Routes>
+
           <Footer></Footer>
         </Layout>
+
       </Provider>
     </>
   )
