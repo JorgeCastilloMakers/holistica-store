@@ -8,17 +8,10 @@ import { useSelector } from 'react-redux';
 export const NavIcons = ({ to }) => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const cart = useSelector(state => state.cart);
+
     const toggleMenu = () => {
         setIsMenuOpen(!isMenuOpen);
     };
-
-    const handleLinkClick = (e) => {
-        e.preventDefault();
-        const targetId = e.target.getAttribute('href').substring(1);
-        const targetElement = document.getElementById(targetId);
-        targetElement.scrollIntoView({ behavior: "smooth" });
-        setIsMenuOpen(false);
-    }
 
     return (
         <>
@@ -30,10 +23,10 @@ export const NavIcons = ({ to }) => {
                 </div>
                 <div id="menu" className={isMenuOpen ? 'overlay' : ''}>
                     <ul>
-                        <NavItem href={"/"}>Home</NavItem>
-                        <NavItem href={"#aboutUs"} onClick={handleLinkClick}>Nosotros</NavItem>
-                        <NavItem onClick={handleLinkClick}>Productos</NavItem>
-                        <NavItem href={"#contact"} onClick={handleLinkClick}>Contacto</NavItem>
+                        <NavItem openMenu={setIsMenuOpen} link={"/"} >Home</NavItem>
+                        <NavItem openMenu={setIsMenuOpen} link={"/#aboutUs"}>Nosotros</NavItem>
+                        <NavItem openMenu={setIsMenuOpen} link={"/products"}>Productos</NavItem>
+                        <NavItem openMenu={setIsMenuOpen} link={"/#contact"}>Contacto</NavItem>
                     </ul>
                 </div>
             </div>

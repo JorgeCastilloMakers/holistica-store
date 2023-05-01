@@ -5,6 +5,9 @@
     padding-left: 6%;
     padding-right: 5%;
     scroll-snap-align: start;
+    background-image: url("../../../assets/Images/holistica-logo.png");
+    background-size: 150px;
+    background-color: #fafafa;
     &_title{
         font-family: var(--font-play);
         font-weight: 900;

@@ -61,6 +61,10 @@
 
         }
     }
+            &_price{
+            width: 10%;
+            padding-left: 1%;
+        }
 
 }
 .down{
@@ -69,4 +73,44 @@
 .delete{
     font-size: 20px;
     margin-left: 20%;
+}
+
+
+@media (max-width: 878px){
+    .cart_item{
+    min-height: 150px;
+    &_id{
+        width: 15%;
+        padding-left: 1%;   
+    }
+    &_product{
+        width: 50%;
+        gap: 2%;
+        flex-wrap: wrap;
+        &_image{
+            order: 3;
+            margin-left: 25%;
+            opacity: 0;
+        }
+        &_name{
+            order: 1;
+            font-size: 15px;
+        }
+        &_scent{
+            order:2;
+            font-size: 15px;
+        }
+    }
+    &_quantity{
+        width: 20%;
+        &_price{
+            width: 5%;
+        }
+    }
+
+}
+.delete{
+    margin-left: 10%;
+}
+
 }

@@ -11,6 +11,7 @@ align-items: center;
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 1px;
+    cursor: pointer;
     --clippy:polygon(0 0, 0 0, 0 100%, 0% 100%);
     &::after{
         content: "";

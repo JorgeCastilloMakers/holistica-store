@@ -19,3 +19,15 @@
         max-width: 100px;
      }
 }
+
+@media (max-width: 878px){
+   .logo{
+
+      &_title{
+         font-size: 18px;
+      }
+      &_image{
+         width: 30%;
+      }
+   }
+}

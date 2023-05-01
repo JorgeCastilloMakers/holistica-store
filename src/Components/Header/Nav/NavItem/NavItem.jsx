@@ -1,11 +1,20 @@
 import './navItem.scss'
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
-export const NavItem = ({ children, to, href }) => {
 
+export const NavItem = ({ children, openMenu, link }) => {
+
+    const navigate = useNavigate();
+
+    const handleLinkClick = (e) => {
+        console.log("hola nav")
+        e.preventDefault();
+        navigate(link)
+        openMenu(false);
+    }
     return (
         <>
-            <li className='nav_list'><Link className='nav_item' href={href} to={to}>{children}</Link></li>
+            <li className='nav_list'><a onClick={handleLinkClick} className='nav_item' >{children}</a></li>
         </>
     )
 }

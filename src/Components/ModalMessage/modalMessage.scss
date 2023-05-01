@@ -8,6 +8,7 @@
   align-items: center;
   justify-content: center;
   background-color: rgba(0, 0, 0, 0.212);
+  z-index: 99;
     &_message{
         width: 25%;
         height: 6%;
@@ -128,4 +129,13 @@
 	100% {
 		box-shadow: inset 0px 0px 0px 30px rgb(170, 3, 3);
 	}
+}
+
+@media (max-width: 878px){
+  .modal{
+
+    &_message{
+        width: 80%;
+    }
+}
 }

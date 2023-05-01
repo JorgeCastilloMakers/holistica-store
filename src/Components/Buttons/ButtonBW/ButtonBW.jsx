@@ -1,9 +1,9 @@
 import './buttonBW.scss'
 
-export const ButtonBW = ({ children }) => {
+export const ButtonBW = ({ children, onClick }) => {
     return (
         <>
-            <button className="btn-bw">{children}</button>
+            <button onClick={onClick} className="btn-bw">{children}</button>
         </>
     )
 }

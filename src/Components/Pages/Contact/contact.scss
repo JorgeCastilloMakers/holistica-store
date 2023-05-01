@@ -101,6 +101,19 @@
     }
 }
 
+@media (max-width: 1024px){
+
+    .contact{
+        &_form_container{
+             background-size: contain;
+             width: 100%;
+        }
+    }
+    .contact_form{
+        width: 50%;
+    }
+
+}
 @media (max-width: 878px){
     .form_logo{
         align-self: flex-start;
@@ -145,4 +158,19 @@
         }
     }
 
+}
+
+@media (max-width: 678px){
+    .contact{
+        height: 100%;
+        &_text{
+            width: 90%;
+        }
+    }
+    .contact_form_container{
+        background: #fafafa;
+    }
+    .contact_form_container::after{
+        display: none;
+    }
 }

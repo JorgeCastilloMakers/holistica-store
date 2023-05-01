@@ -2,7 +2,7 @@
     width: 100%;
     max-width: 240px;
     height: 100%;
-    max-height: 410px;
+    max-height: 470px;
     display: flex;
     justify-content: flex-start;
     align-items: center;
@@ -14,12 +14,14 @@
     padding: 1%;
     transition: all 0.8s ease;
     margin-bottom: 10px;
+    background: #fafafa;
     &_image_container{
         max-width: 210px;
         min-width: 210px;
         max-height: 210px;
         border-radius: 5px;
         overflow: hidden;
+        cursor: pointer;
     }
     &_image{
         width: 100%;
@@ -50,4 +52,28 @@
     &:hover{
         transform: translateY(-5px);
     }
+}
+.link{
+    text-decoration: none;
+    color: #fafafa;
+}
+@media (max-width: 878px){
+    .card_product{
+        max-width: 420px;  
+        max-height: 570px;
+        padding-bottom: 5%;    
+        
+        &_image_container{
+            max-width: unset;
+            max-height: unset;
+        }
+        &_category{
+            font-size: 18px;
+        }
+        &_name{
+            min-height: unset;
+            font-size: 25px;
+        }
+    }
+
 }

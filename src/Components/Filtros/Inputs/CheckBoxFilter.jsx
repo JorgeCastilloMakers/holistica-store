@@ -1,11 +1,12 @@
 import { useState } from 'react'
 import './checkBox.scss'
 
-export const CheckBoxFilter = ({ children, setCategoryFilter, categoryFilter, setShowDetails }) => {
+export const CheckBoxFilter = ({ children, setCategoryFilter, categoryFilter, setCurrentPage }) => {
 
     const checkSelected = (e) => {
         if (e.target.checked) {
             setCategoryFilter(e.target.name)
+            setCurrentPage(1)
         } else {
             setCategoryFilter("")
         }

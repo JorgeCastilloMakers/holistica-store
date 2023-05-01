@@ -1,8 +1,37 @@
 import './cartItems.scss'
 import { AiFillDelete } from "react-icons/ai";
 import { TbTriangleFilled, TbTriangleInvertedFilled } from "react-icons/tb";
+import { removeFromCart, addToCart, removeAllFromCart } from '../../../Actions/cartActions.js'
+import { useDispatch } from 'react-redux';
+import { useState } from 'react';
+
 
 export const CartItems = ({ clave, id, name, quantity, price, scent, image }) => {
+    const dispatch = useDispatch();
+    const [productIdToRemove, setProductIdToRemove] = useState(null);
+
+    const addOneProduct = (id, scent) => {
+        dispatch(addToCart(id, scent, 1))
+
+    }
+    const deleteOneFromCart = (id) => {
+        dispatch(removeFromCart(id))
+        setProductIdToRemove(null);
+    }
+
+    const confirmDelete = (id) => {
+        setProductIdToRemove(id);
+        if (window.confirm('Are you sure you want to remove this item from your cart?')) {
+            deleteOneFromCart(id);
+        }
+    }
+    const deleteAllFromCart = (id, scent) => {
+        dispatch(removeAllFromCart(id, scent))
+    }
+
+
+
+
     return (
         <li key={clave} className='cart_item' >
             <h5 className='cart_item_id'>#{id.substring(0, 5)}</h5>
@@ -21,7 +50,7 @@ export const CartItems = ({ clave, id, name, quantity, price, scent, image }) =>
                     <AiFillDelete />
                 </button>
             </div>
-            <p>$ {price}</p>
+            <h5 className='cart_item_price'>$ {price}</h5>
 
 
 

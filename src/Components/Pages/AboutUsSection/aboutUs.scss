@@ -24,6 +24,21 @@
     }
 }
 
+
+@media (max-width: 1024px){
+    .about_us{
+
+        &_text{
+            text-align: left;
+            width: 100%;
+            padding-left: unset;
+            padding-right: 10%;
+        }
+    }
+
+
+
+}
 @media (max-width: 878px){
     .about_us{
         background-position: center;
@@ -41,4 +56,13 @@
 
 
 
+}
+
+@media (max-width: 678px){
+    .about_us{
+        padding-left: 2%;
+        padding-right: 2%;
+        height: 100%;
+        background-attachment: fixed;
+    }
 }

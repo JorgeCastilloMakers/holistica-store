@@ -65,3 +65,16 @@
         }
     }  
 }
+
+@media(max-width: 678px){
+    .hero_title{
+        font-size: 30px;
+    }
+    .hero_subtitle{
+        font-size: 20px;
+        right: 10%;
+    }
+    .hero_btn_container{
+        padding-right: 5%;
+    }
+}

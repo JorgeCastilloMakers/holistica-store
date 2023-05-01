@@ -6,10 +6,10 @@ export const Nav = ({ homeLink, aboutLink, productsLink, contactLink, cartLink }
     return (
         <>
             <nav className='navbar'>
-                <NavItem to={homeLink}>Home</NavItem>
-                <NavItem to={aboutLink} href={aboutLink}>Nosotros</NavItem>
-                <NavItem to={productsLink}>Productos</NavItem>
-                <NavItem to={contactLink}>Contacto</NavItem>
+                <NavItem link={homeLink}>Home</NavItem>
+                <NavItem link={aboutLink} href={aboutLink}>Nosotros</NavItem>
+                <NavItem link={productsLink}>Productos</NavItem>
+                <NavItem link={contactLink}>Contacto</NavItem>
                 <NavIcons to={cartLink} />
             </nav>
         </>

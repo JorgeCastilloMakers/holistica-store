@@ -81,3 +81,29 @@
     }
 
 }
+
+@media (max-width: 878px){
+    .container{
+        flex-wrap: wrap;
+        min-height: unset;
+    }
+    .filters{
+        min-height: auto;
+        width: 100%;
+        padding-bottom: 5%;
+
+        &_title{
+            padding-bottom: 2%;
+        }
+    
+    }
+    .checkbox_label{
+        font-size: 18px;
+    }
+    .checkbox_input{
+        transform: scale(1.5);
+        &:checked{
+            border-color: red;
+        }
+    }
+}

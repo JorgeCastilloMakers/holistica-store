@@ -11,6 +11,8 @@ import { createStoreAsync } from './Store/index.js';
 import { useEffect, useState } from "react";
 import { CartPage } from './Components/Pages/CartPage/CartPage.jsx';
 import { useLocation } from 'react-router-dom';
+import { ProductDetails } from './Components/Pages/ProductDetails/ProductDetails.jsx';
+import { Checkout } from './Components/Pages/CheckoutPage/Checkout.jsx';
 
 
 
@@ -54,15 +56,17 @@ const App = () => {
             <Nav
               homeLink="/"
               aboutLink="/#aboutUs"
-              productsLink="/products"
+              productsLink="/products/"
               contactLink="/#contact"
               cartLink="/cart"
             />
           </Header>
           <Routes>
             <Route path='/' element={<Home />} />
-            <Route path='/products' element={<Products></Products>} />
+            <Route path='/products/' element={<Products></Products>} />
+            <Route path='/products/:id?' element={<ProductDetails></ProductDetails>} />
             <Route path='/cart' element={<CartPage></CartPage>} />
+            <Route path='/checkout' element={<Checkout></Checkout>} />
           </Routes>
 
           <Footer></Footer>

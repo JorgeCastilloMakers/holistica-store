@@ -34,7 +34,20 @@
         font-size: 15px;
 }
 
-.link{
-    cursor: pointer;
-    text-transform: capitalize;
+.link_category{
+    text-decoration: none;
+    color: var(--color-gold);
+}
+
+@media (max-width: 678px){
+    .breadcrums{
+        padding-top: 5%;
+        &_category{
+            padding-left: 2%;
+        }
+        &_product{
+            width: 100%;
+        }
+    }
+
 }

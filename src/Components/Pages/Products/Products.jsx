@@ -2,12 +2,12 @@ import './products.scss';
 import { useProductsList } from '../../../Hooks/useProductsList.js';
 import { CardProduct } from '../../CardProduct/CardProduct.jsx'
 import { useState, useEffect } from 'react'
-import loaderGif from '../../../assets/Images/loader.gif'
 import { Filtros } from '../../Filtros/Filtros';
 import { PaginationProducts } from '../../Pagination/PaginationProducts';
-import { ProductDetails } from '../../ProductDetails/ProductDetails.jsx'
 import { Breadcrums } from '../../BreadCrums/BreadCrums';
 import { Modalmessage } from '../../ModalMessage/Modalmessage.jsx';
+import Skeleton from 'react-loading-skeleton';
+import 'react-loading-skeleton/dist/skeleton.css'
 
 export const Products = () => {
     const [isLoading, setIsLoading] = useState(true);
@@ -15,8 +15,6 @@ export const Products = () => {
     const [currentPage, setCurrentPage] = useState(1);
     const productsPerPage = 8;
     const [categoryFilter, setCategoryFilter] = useState("Todos");
-    const [showDetails, setShowDetails] = useState(false);
-    const [selectedProduct, setSelectedProduct] = useState({})
     const [showModal, setShowModal] = useState(false);
     const [modalMessage, setModalMessage] = useState("");
 
@@ -40,15 +38,21 @@ export const Products = () => {
 
     const totalPages = Math.ceil(filteredProducts.length / productsPerPage);
 
+    const goToTop = () => {
+        window.scrollTo(0, 0);
+    };
+
     const nextPage = () => {
         if (currentPage < totalPages) {
             setCurrentPage(currentPage + 1);
+            goToTop()
         }
     };
 
     const prevPage = () => {
         if (currentPage > 1) {
             setCurrentPage(currentPage - 1);
+            goToTop()
         }
     };
     useEffect(() => {
@@ -68,58 +72,41 @@ export const Products = () => {
                 <Modalmessage message={modalMessage} />
             )}
             <div className='container'>
-                {!showDetails &&
-                    <Filtros
-                        setCategoryFilter={setCategoryFilter}
-                        categoryFilter={categoryFilter}
-                        setShowDetails={setShowDetails} />
-                }
-
+                <Filtros
+                    setCategoryFilter={setCategoryFilter}
+                    categoryFilter={categoryFilter}
+                    setCurrentPage={setCurrentPage}
+                />
                 <div className="products_card_container">
                     <Breadcrums
-                        categoryFilter={categoryFilter}
-                        showDetails={showDetails}
-                        setShowDetails={setShowDetails}
-                        cardData={selectedProduct}
-                        setSelectedProduct={setSelectedProduct} >
-
+                        categoryFilter={categoryFilter}>
                     </Breadcrums>
-                    {showDetails ? (
-                        <div>
-                            <ProductDetails cardData={selectedProduct} />
-                        </div>
-                    ) : (
-                        <div className='card_container' >
-                            {isLoading ? (
-                                <div className='products_card_loader'>
-                                    <img className='products_card_loader_img' src={loaderGif} alt="" />
-                                    <h3 className='product_card_loader_text'>Cargando Productos</h3>
-                                </div>
-                            ) : (
-                                <div className='card_container'>
-                                    {currentProducts.map(product => (
-                                        <CardProduct
-                                            showDetails={showDetails}
-                                            setShowDetails={setShowDetails}
-                                            setSelectedProduct={setSelectedProduct}
-                                            selectedProduct={selectedProduct}
-                                            setModalMessage={setModalMessage}
-                                            setShowModal={setShowModal}
-                                            key={product.id} {...product}>
-                                        </CardProduct>
-                                    ))}
-                                </div>
-                            )}
-                        </div>
-                    )}
-                    {!showDetails &&
-                        <PaginationProducts
-                            prevPage={prevPage}
-                            nextPage={nextPage}
-                            totalPages={totalPages}
-                            currentPage={currentPage}>
-                        </PaginationProducts>
-                    }
+                    <div className='card_container' >
+                        {isLoading ? (
+                            <div className='skeleton_container'>
+                                <Skeleton height={470} width={240} count={1} duration={1} style={{ backgroundColor: 'rgba(0, 0, 0, 0.05)', borderRadius: "5px" }} />
+                                <Skeleton height={470} width={240} count={1} duration={1} style={{ backgroundColor: 'rgba(0, 0, 0, 0.05)', borderRadius: "5px" }} />
+                                <Skeleton height={470} width={240} count={1} duration={1} style={{ backgroundColor: 'rgba(0, 0, 0, 0.05)', borderRadius: "5px" }} />
+                                <Skeleton height={470} width={240} count={1} duration={1} style={{ backgroundColor: 'rgba(0, 0, 0, 0.05)', borderRadius: "5px" }} />
+                            </div>
+                        ) : (
+                            <div className='card_container'>
+                                {currentProducts.map(product => (
+                                    <CardProduct
+                                        setModalMessage={setModalMessage}
+                                        setShowModal={setShowModal}
+                                        key={product.id} {...product}>
+                                    </CardProduct>
+                                ))}
+                            </div>
+                        )}
+                    </div>
+                    <PaginationProducts
+                        prevPage={prevPage}
+                        nextPage={nextPage}
+                        totalPages={totalPages}
+                        currentPage={currentPage}>
+                    </PaginationProducts>
                 </div>
             </div>
         </section>
