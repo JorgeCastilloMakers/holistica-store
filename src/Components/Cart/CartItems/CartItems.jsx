@@ -14,15 +14,15 @@ export const CartItems = ({ clave, id, name, quantity, price, scent, image }) =>
         dispatch(addToCart(id, scent, 1))
 
     }
-    const deleteOneFromCart = (id) => {
-        dispatch(removeFromCart(id))
+    const deleteOneFromCart = (id, scent) => {
+        dispatch(removeFromCart(id, scent))
         setProductIdToRemove(null);
     }
 
     const confirmDelete = (id) => {
         setProductIdToRemove(id);
         if (window.confirm('Are you sure you want to remove this item from your cart?')) {
-            deleteOneFromCart(id);
+            deleteOneFromCart(id, scent);
         }
     }
     const deleteAllFromCart = (id, scent) => {
@@ -44,7 +44,7 @@ export const CartItems = ({ clave, id, name, quantity, price, scent, image }) =>
                 <h5 className='cart_item_quantity_number' >{quantity}</h5>
                 <div className='cart_item_quantity_btns'>
                     <button className='cart_item_quantity_btnIcon' onClick={() => addOneProduct(id, scent)}><TbTriangleFilled /></button>
-                    <button className='cart_item_quantity_btnIcon down' onClick={() => quantity > 1 ? deleteOneFromCart(id) : confirmDelete(id)}><TbTriangleInvertedFilled /></button>
+                    <button className='cart_item_quantity_btnIcon down' onClick={() => quantity > 1 ? deleteOneFromCart(id, scent) : confirmDelete(id)}><TbTriangleInvertedFilled /></button>
                 </div>
                 <button className='cart_item_quantity_btnIcon delete' onClick={() => deleteAllFromCart(id, scent)}>
                     <AiFillDelete />

@@ -56,6 +56,10 @@
 .link{
     text-decoration: none;
     color: #fafafa;
+    &:hover{
+        height: 100%;
+        color: black;
+    }
 }
 @media (max-width: 878px){
     .card_product{

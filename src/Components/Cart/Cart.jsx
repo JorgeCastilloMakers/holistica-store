@@ -60,7 +60,7 @@ const Cart = () => {
                     <div className='cart_foot_total'>
                         <h3 className='cart_foot_total_price'>Total: $ {cartTotal()}</h3>
                         <ButtonBW onClick={() => handleNavigate("products")}>Seguir Comprando</ButtonBW>
-                        <button onClick={() => handleNavigate("checkout")} className='cart_foot_total_btnPay'>PAGAR</button>
+                        <button onClick={() => handleNavigate("checkout")} className='cart_foot_total_btnPay' disabled={cart.length === 0 ? true : false}>PAGAR</button>
                     </div>
 
                 </div>

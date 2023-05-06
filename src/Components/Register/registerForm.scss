@@ -1,0 +1,99 @@
+.register{
+    width: 70%;
+    height: 100%;
+    box-shadow: 0px 3px 5px 1px rgba(0,0,0,0.19);
+    border-radius: 2px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: 20px;
+    padding-bottom: 2%;
+    &_logo{
+        max-width: 450px;
+        aspect-ratio: 1 / 1;
+    }
+    &_title{
+        font-family: var(--font-play);
+        font-weight: 900;
+        letter-spacing: 8px;
+        font-size: 18px;
+        padding-bottom: 2%;
+        text-transform: uppercase;
+    }
+    &_form{
+        width: 50%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        gap: 20px;
+        margin-top: 20px;
+        &_container{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            gap: 30px;
+        }
+        &_label{
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            font-weight: 500;
+            letter-spacing: 5px;
+            &:focus{
+                outline: none;
+            }
+            
+        }
+        &_input{
+            margin-top: 10px;
+            width: 100%;
+            height: 30px;
+        }
+        &_btn{
+            width: 40%;
+            height: 100%;
+            background-color: var(--color-black);
+            color: #fafafa;
+            padding: 2% 2%;
+            align-self: flex-end;
+            border: 2px solid var(--color-black);
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 15px;
+            letter-spacing: 6px;
+            font-weight: 900;
+            transition: all 0.4s ease-in;
+            
+            &:hover{
+                background-color: #fafafa;
+                border: 2px solid var(--color-black);
+                color: var(--color-black);
+            }
+            &:active{
+                transform: scale(0.8);
+
+            }
+            &:disabled{
+            color: rgb(110, 110, 110); 
+            background-color: rgb(110, 110, 110);
+            }
+        }
+            &_select{
+            width: 100%;
+            height: 30px;
+            font-size: 16px;
+            margin-top: 10px;
+            font-family: var(--font-serrat);
+            border: 1.5px solid #000;
+            &:focus{
+                outline: none;
+            }
+    }
+    }
+}

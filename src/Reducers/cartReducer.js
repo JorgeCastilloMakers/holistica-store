@@ -29,21 +29,31 @@ export const cartReducer = (state = initialState, action) => {
         }
 
         case REMOVE_ONE_FROM_CART: {
-        let itemRemove = state.cart.find(item => item.id === action.payload);
-        return itemRemove.quantity > 1
-            ? {
-                ...state,
-                cart: state.cart.map(item =>
-                item.id === action.payload ? { ...item, quantity: item.quantity - 1 } : item
-                ),
+        const idToRemove = action.payload;
+        const scentToRemove = action.scent;
+
+        const itemToRemove = state.cart.find(item => item.id === idToRemove && item.scent === scentToRemove);
+        const updatedItem = {
+            ...itemToRemove,
+            quantity: itemToRemove.quantity - 1
+        };
+
+        const updatedCart = state.cart.map(item => {
+            if (item.id === idToRemove && item.scent === scentToRemove) {
+            return updatedItem;
             }
-            : {
-                ...state,
-                cart: state.cart.filter(item => item.id !== action.payload),
-            };
+            return item;
+        });
+
+        return {
+            ...state,
+            cart: updatedCart,
+        };
         }
+
         case REMOVE_ALL_FROM_CART: {
-            const newCart = state.cart.filter(item => item.id !== action.payload && item.scent !== action.scent);
+
+        const newCart = state.cart.filter(item => !(item.id === action.payload && item.scent === action.scent));
         return {
             ...state,
             cart: newCart,

@@ -13,7 +13,9 @@ import { CartPage } from './Components/Pages/CartPage/CartPage.jsx';
 import { useLocation } from 'react-router-dom';
 import { ProductDetails } from './Components/Pages/ProductDetails/ProductDetails.jsx';
 import { Checkout } from './Components/Pages/CheckoutPage/Checkout.jsx';
-
+import { LoginRegister } from './Components/Pages/Login-RegisterPage/LoginRegister.jsx';
+import { MyAcount } from './Components/Pages/MyAcount/MyAcount.jsx';
+import { useAuth } from '../src/Context/AuthContext'
 
 
 
@@ -32,6 +34,7 @@ const ScrollToTop = () => {
 const App = () => {
   const [loading, setLoading] = useState(true);
   const [store, setStore] = useState(null);
+  const { user } = useAuth();
 
   //hago la precarga del store por la demora que genera el get de firebase
   useEffect(() => {
@@ -59,7 +62,9 @@ const App = () => {
               productsLink="/products/"
               contactLink="/#contact"
               cartLink="/cart"
+              authLink={user ? "/myacount" : "auth"}
             />
+
           </Header>
           <Routes>
             <Route path='/' element={<Home />} />
@@ -67,6 +72,8 @@ const App = () => {
             <Route path='/products/:id?' element={<ProductDetails></ProductDetails>} />
             <Route path='/cart' element={<CartPage></CartPage>} />
             <Route path='/checkout' element={<Checkout></Checkout>} />
+            <Route path='/auth' element={<LoginRegister></LoginRegister>} />
+            <Route path='/myacount' element={<MyAcount></MyAcount>} />
           </Routes>
 
           <Footer></Footer>

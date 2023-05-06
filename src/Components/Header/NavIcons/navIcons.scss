@@ -147,7 +147,20 @@ cursor: pointer;
   border-radius: 50%;
 }
 
+.login_link{
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  color: #fafafa;
+  &_name{
+    font-size: 10px;
+    position: absolute;
+    text-align: end;
+    top: 60%;
+    right: 20%;
 
+  }
+}
 @media (max-width: 878px){
     #burger-menu{
         display: block;

@@ -2,7 +2,7 @@ import { NavIcons } from '../NavIcons/NavIcons'
 import './nav.scss'
 import { NavItem } from './NavItem/NavItem'
 
-export const Nav = ({ homeLink, aboutLink, productsLink, contactLink, cartLink }) => {
+export const Nav = ({ homeLink, aboutLink, productsLink, contactLink, cartLink, authLink }) => {
     return (
         <>
             <nav className='navbar'>
@@ -10,7 +10,7 @@ export const Nav = ({ homeLink, aboutLink, productsLink, contactLink, cartLink }
                 <NavItem link={aboutLink} href={aboutLink}>Nosotros</NavItem>
                 <NavItem link={productsLink}>Productos</NavItem>
                 <NavItem link={contactLink}>Contacto</NavItem>
-                <NavIcons to={cartLink} />
+                <NavIcons cartLink={cartLink} authLink={authLink} />
             </nav>
         </>
     )
