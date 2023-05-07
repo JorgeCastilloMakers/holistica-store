@@ -2,12 +2,14 @@ import { doc, getDoc, setDoc } from 'firebase/firestore'
 import { db } from '../Firebase/firebaseConfig';
 import {useAuth} from '../Context/AuthContext'
 
+
 export const useUpload = (order) => {
-  const { user } = useAuth();
-  const userID = user.uid
-  const userDocRef = doc(db, "users", userID);
+  const { userAuth } = useAuth();
+  const userID = useAuth;
+
 
   const uploadOrder = async (order) => {
+  const userDocRef = doc(db, "users", userID);  
     try {
       // Obtener el documento actual del usuario
       const userDoc = await getDoc(userDocRef);

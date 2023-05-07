@@ -20,7 +20,7 @@ export const NavIcons = ({ cartLink, authLink }) => {
         <>
             <div className="nav-icon">
                 <Link to={authLink} className="login_link">
-                    {user ? <img style={{ maxWidth: "70px", maxHeight: "100px", borderRadius: "50%" }} src={user.profilePicture} alt="" /> : < AiOutlineUser className="icon" />}
+                    < AiOutlineUser className="icon" />
                     {user && <span className="login_link_name">Hola, {user.name}</span>}
                 </Link>
 

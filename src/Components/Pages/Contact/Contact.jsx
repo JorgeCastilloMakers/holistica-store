@@ -5,7 +5,7 @@ import { ButtonBlack } from '../../Buttons/ButtonBlack/ButtonBlack.jsx'
 
 export const Contact = () => {
     return (
-        <section className="contact">
+        <section className="contact" id='contact' >
 
             <div className="contact_form_container" id='contact'>
                 <div className="form_logo">

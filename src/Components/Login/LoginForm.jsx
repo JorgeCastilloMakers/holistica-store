@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom'
 
 export const LoginForm = ({ setAlreadyRegistered }) => {
 
-    const { login, loginWithGoogle } = useAuth();
+    const { login } = useAuth();
     const [user, setUser] = useState({
         email: '',
         password: '',
@@ -31,12 +31,6 @@ export const LoginForm = ({ setAlreadyRegistered }) => {
 
     }
 
-    const handleGoogleLogin = async () => {
-        await loginWithGoogle();
-        navigate("/")
-    }
-
-
     return (
         <div className='login'>
             <img className='login_logo' src={logoBlack} alt="holistica-logo" />
@@ -56,9 +50,8 @@ export const LoginForm = ({ setAlreadyRegistered }) => {
                 <button className='login_form_btn' type='submit'>INGRESAR</button>
 
             </form>
-            <button className='login_form_google' type='button' onClick={handleGoogleLogin}>Iniciar con <FcGoogle />oogle</button>
-            <h3 className='login_link'>¿No tienes cuenta?
-                <span className='login_link_span' onClick={() => setAlreadyRegistered(false)}> Registrate aquí</span>
+            <h3 className='login_link_change'>¿No tienes cuenta?
+                <span className='login_link_change_span' onClick={() => setAlreadyRegistered(false)}> Registrate aquí</span>
             </h3>
         </div>
     )

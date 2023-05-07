@@ -20,6 +20,7 @@
     "react-redux": "^8.0.5",
     "react-router-dom": "^6.10.0",
     "sass": "^1.61.0",
+    "sweetalert2": "^11.7.5",
     "uuidv4": "^6.2.13"
   },
   "devDependencies": {

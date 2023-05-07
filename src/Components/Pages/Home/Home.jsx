@@ -6,9 +6,11 @@ import { LatestProducts } from '../LatestProducts/LatestProducts.jsx';
 import { useState, useEffect } from 'react'
 import { Products } from '../Products/Products';
 
+
 export const Home = () => {
     const [selectedProduct, setSelectedProduct] = useState({})
     const [showDetails, setShowDetails] = useState(false);
+
     return (
         <>
             {showDetails ? (

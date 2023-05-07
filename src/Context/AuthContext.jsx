@@ -1,23 +1,39 @@
 import { createContext, useContext } from 'react'
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut, GoogleAuthProvider, signInWithPopup } from 'firebase/auth'
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut } from 'firebase/auth'
 import { auth, db } from '../Firebase/firebaseConfig';
-import { collection, doc, getDocs, getDoc, setDoc } from 'firebase/firestore'
+import { doc, getDoc, setDoc, updateDoc } from 'firebase/firestore'
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import Swal from 'sweetalert2'
 
-
-
-export const AuthContext = createContext();
-
+export const AuthContext = createContext({
+  user: {
+    uid: null,
+    email: null,
+    name: null,
+    lastname: null,
+    country: null,
+    state: null,
+    address: null,
+    profilePicture: null,
+    orders: []
+  },
+  login: () => { },
+  logout: () => { }
+});
 
 export const useAuth = () => {
   const context = useContext(AuthContext)
   return context;
 }
 
+
+
+
 export const AuthContextProvider = (props) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true)
+  const [userAuth, setUserAuth] = useState()
   const navigate = useNavigate();
 
   const signUp = async (email, password, name, lastname, country, state, address) => {
@@ -36,69 +52,77 @@ export const AuthContextProvider = (props) => {
     const user = await signInWithEmailAndPassword(auth, email, password);
     const docRef = doc(db, "users", `/${user.user.uid}`);
     const docSnap = await getDoc(docRef);
-    const name = docSnap.data().name;
-    const lastname = docSnap.data().lastname;
-    const country = docSnap.data().country;
-    const state = docSnap.data().state;
-    const address = docSnap.data().address;
-    const profilePicture = docSnap.data().profilePicture;
-    const orders = docSnap.data().orders;
-    let userData = {
-      uid: user.user.uid,
-      email: user.user.email,
+    const userData = docSnap.data();
+    setUserAuth(user.user.uid)
+    setUser({
+      uid: user.uid,
+      email: user.email,
+      ...userData
+    });
+
+    return userData;
+  };
+
+  const logOut = () => {
+    Swal.fire({
+      text: '¿Estas seguro que deseas cerrar la sesión?',
+      confirmButtonText: "Aceptar",
+      confirmButtonColor: "#a80202",
+      showCancelButton: true,
+      cancelButtonText: "Cancelar"
+    }).then(res => {
+      if (res.isConfirmed) {
+        signOut(auth);
+        setUser(null);
+        navigate('/');
+      } else {
+        return
+      }
+    })
+  };
+
+  const updateProfile = async (name, lastname, country, state, address, picture) => {
+    const userRef = doc(db, 'users', userAuth);
+    await updateDoc(userRef, {
       name: name,
       lastname: lastname,
       country: country,
       state: state,
       address: address,
-      profilePicture: profilePicture,
-      orders: orders
-
-    };
-    setUser(userData)
-    return userData;
-  }
-
-  const loginWithGoogle = async () => {
-    const googleProvider = new GoogleAuthProvider();
-    const userCredential = await signInWithPopup(auth, googleProvider)
-    let userData = {
-      uid: userCredential.user.uid,
-      email: userCredential.user.email,
-      name: userCredential.user.displayName,
-      lastname: "",
-      country: "",
-      state: "",
-      address: "",
-      profilePicture: userCredential.user.photoURL,
-      orders: []
-
-    };
-    setUser(userData)
-    console.log(userData)
-    return userData
-  }
-
-  const logOut = () => {
-    if (window.confirm('¿Estas seguro que deseas cerrar la sesión?')) {
-      signOut(auth)
-      setUser(null)
-      navigate('/')
-    }
+      profilePicture: picture
+    });
     return
   };
 
+
   useEffect(() => {
-    onAuthStateChanged(auth, currentUser => {
-      setUser(currentUser)
-      setLoading(false)
-    })
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        const docRef = doc(db, "users", `/${user.uid}`);
+        getDoc(docRef)
+          .then((doc) => {
+            if (doc.exists()) {
+              const userData = doc.data();
+              setUser(userData);
+              setUserAuth(user.uid)
+              setLoading(false);
+            }
+          })
+          .catch((error) => {
+            console.log("Error getting document:", error);
+          });
+      } else {
+        setUser(null);
+        setLoading(false);
+      }
+    });
+
+    return unsubscribe;
   }, []);
 
 
-
   return (
-    <AuthContext.Provider value={{ login, loginWithGoogle, user, logOut, loading, signUp }}>
+    <AuthContext.Provider value={{ login, user, logOut, loading, signUp, updateProfile, userAuth }}>
       {props.children}
     </AuthContext.Provider>
   )

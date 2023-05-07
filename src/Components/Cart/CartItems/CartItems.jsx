@@ -4,6 +4,7 @@ import { TbTriangleFilled, TbTriangleInvertedFilled } from "react-icons/tb";
 import { removeFromCart, addToCart, removeAllFromCart } from '../../../Actions/cartActions.js'
 import { useDispatch } from 'react-redux';
 import { useState } from 'react';
+import Swal from 'sweetalert2'
 
 
 export const CartItems = ({ clave, id, name, quantity, price, scent, image }) => {
@@ -21,12 +22,37 @@ export const CartItems = ({ clave, id, name, quantity, price, scent, image }) =>
 
     const confirmDelete = (id) => {
         setProductIdToRemove(id);
-        if (window.confirm('Are you sure you want to remove this item from your cart?')) {
-            deleteOneFromCart(id, scent);
-        }
+        Swal.fire({
+            text: '¿Estas seguro que deseas eliminar el producto?',
+            confirmButtonText: "Aceptar",
+            confirmButtonColor: "#a80202",
+            showCancelButton: true,
+            cancelButtonText: "Cancelar",
+            cancelButtonColor: "#000",
+        }).then(res => {
+            if (res.isConfirmed) {
+                deleteOneFromCart(id, scent);
+            } else {
+                return
+            }
+        })
     }
     const deleteAllFromCart = (id, scent) => {
-        dispatch(removeAllFromCart(id, scent))
+        Swal.fire({
+            text: '¿Estas seguro que deseas eliminar el producto?',
+            confirmButtonText: "Aceptar",
+            confirmButtonColor: "#a80202",
+            showCancelButton: true,
+            cancelButtonText: "Cancelar",
+            cancelButtonColor: "#000",
+        }).then(res => {
+            if (res.isConfirmed) {
+                dispatch(removeAllFromCart(id, scent))
+            } else {
+                return
+            }
+        })
+
     }
 
 

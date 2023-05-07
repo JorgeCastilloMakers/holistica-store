@@ -4,6 +4,7 @@ import './cart.scss'
 import { CartItems } from './CartItems/CartItems.jsx';
 import { ButtonBW } from '../Buttons/ButtonBW/ButtonBW.jsx'
 import { useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2'
 
 
 const Cart = () => {
@@ -22,9 +23,20 @@ const Cart = () => {
 
 
     const cartReset = () => {
-        if (window.confirm('Are you sure you want to reset your cart?')) {
-            dispatch(resetCart())
-        }
+        Swal.fire({
+            text: '¿Estas seguro que deseas vaciar el carrito?',
+            confirmButtonText: "Aceptar",
+            confirmButtonColor: "#a80202",
+            showCancelButton: true,
+            cancelButtonText: "Cancelar",
+            cancelButtonColor: "#000",
+        }).then(res => {
+            if (res.isConfirmed) {
+                dispatch(resetCart())
+            } else {
+                return
+            }
+        })
     }
     return (
         <div className='cart_page'>

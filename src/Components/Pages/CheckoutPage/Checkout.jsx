@@ -1,12 +1,16 @@
 import './checkout.scss'
 import { Link } from 'react-router-dom';
 import { CartTicket } from './CartTicket/CartTicket.jsx'
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { ButtonBlack } from '../../Buttons/ButtonBlack/ButtonBlack.jsx'
 import { useAuth } from '../../../Context/AuthContext'
 import { v4 as uuidv4 } from 'uuid';
 import { useState } from 'react'
 import { useUpload } from '../../../Hooks/useUpload.js'
+import Swal from 'sweetalert2'
+import { resetCart } from '../../../Actions/cartActions.js'
+import { useNavigate } from 'react-router-dom';
+
 
 export const Checkout = () => {
     const [paymentMethod, setPaymentMethod] = useState("");
@@ -38,7 +42,10 @@ export const Checkout = () => {
         "Tierra del Fuego",
         "Tucumán"
     ];
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
     const { user } = useAuth();
+
     const cartTotal = () => {
         return cart.reduce(
             (acc, cur) => acc + Number(cur.price) * Number(cur.quantity), 0);
@@ -53,13 +60,25 @@ export const Checkout = () => {
         payment: paymentMethod
     }
     const uploadOrder = useUpload();
+
     const handlePay = (order) => {
         if (user) {
+
             uploadOrder(order);
-            console.log("gracias por tu compra")
+            dispatch(resetCart())
+            Swal.fire({
+                text: 'Gracias por tu compra',
+                icon: 'success',
+                timer: '2000',
+                position: 'center'
+            })
+            navigate("/products")
+
         }
         return
     }
+
+
 
     return (
         <div className='checkout'>
@@ -86,7 +105,7 @@ export const Checkout = () => {
                         <label className='checkout_form_label' htmlFor="country">
                             País
                             <small className='checkout_form_label_error'>{""}</small>
-                            <input placeholder='Argentina' className='checkout_form_input country' type="text" name='country' defaultValue={"Argentina"} readOnly />
+                            <input placeholder='Argentina' className='checkout_form_input country' type="text" name='country' defaultValue={"Argentina"} />
                         </label>
                         <label className='checkout_form_label' htmlFor="address">
                             Dirección
