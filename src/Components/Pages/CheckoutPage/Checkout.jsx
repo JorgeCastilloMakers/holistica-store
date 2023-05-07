@@ -14,6 +14,18 @@ import { useNavigate } from 'react-router-dom';
 
 export const Checkout = () => {
     const [paymentMethod, setPaymentMethod] = useState("");
+    const [billingData, setBillingData] = useState({
+        name: "",
+        lastname: "",
+        country: "",
+        address: "",
+        state: "",
+        cp: "",
+        phone: "",
+        email: "",
+        note: "",
+        payment: paymentMethod
+    });
 
     const cart = useSelector(state => state.cart);
     const provinciasArgentina = [
@@ -63,22 +75,41 @@ export const Checkout = () => {
 
     const handlePay = (order) => {
         if (user) {
-
+            if (paymentMethod === "") {
+                Swal.fire({
+                    text: 'Por favor selecciona un medio de pago',
+                    timer: '2000',
+                    position: 'center',
+                    confirmButtonColor: "#000",
+                })
+                return;
+            }
             uploadOrder(order);
             dispatch(resetCart())
             Swal.fire({
                 text: 'Gracias por tu compra',
                 icon: 'success',
                 timer: '2000',
-                position: 'center'
+                position: 'center',
+                confirmButtonColor: "#000"
             })
             navigate("/products")
-
+        } else {
+            Swal.fire({
+                text: 'Por favor inicia sesión para continuar con el pago',
+                timer: '2000',
+                position: 'center',
+                confirmButtonColor: "#000",
+            })
+            return;
         }
         return
     }
 
-
+    const handleChange = (e) => {
+        e.preventDefault;
+        setBillingData({ ...billingData, [name]: value })
+    }
 
     return (
         <div className='checkout'>
@@ -93,30 +124,25 @@ export const Checkout = () => {
                         <div className='checkout_form_inputs_container'>
                             <label className='checkout_form_label' htmlFor="name">
                                 Nombre
-                                <small className='checkout_form_label_error'>{""}</small>
-                                <input className='checkout_form_input' type="text" name='name' value={user ? user.name : null} />
+                                <input className='checkout_form_input' type="text" name='name' value={user ? user.name : ""} onChange={handleChange} />
                             </label>
                             <label className='checkout_form_label' htmlFor="lastname">
                                 Apellido
-                                <small className='checkout_form_label_error'>{""}</small>
-                                <input className='checkout_form_input' type="text" name='lastname' value={user ? user.lastname : null} />
+                                <input className='checkout_form_input' type="text" name='lastname' value={user ? user.lastname : ""} onChange={handleChange} />
                             </label>
                         </div>
                         <label className='checkout_form_label' htmlFor="country">
                             País
-                            <small className='checkout_form_label_error'>{""}</small>
-                            <input placeholder='Argentina' className='checkout_form_input country' type="text" name='country' defaultValue={"Argentina"} />
+                            <input placeholder='Argentina' className='checkout_form_input country' type="text" name='country' defaultValue={"Argentina"} onChange={handleChange} />
                         </label>
                         <label className='checkout_form_label' htmlFor="address">
                             Dirección
-                            <small className='checkout_form_label_error'>{""}</small>
-                            <input className='checkout_form_input' type="text" name='address' value={user ? user.address : null} />
+                            <input className='checkout_form_input' type="text" name='address' value={user ? user.address : ""} onChange={handleChange} />
                         </label>
                         <div className='checkout_form_inputs_container'>
                             <label className='checkout_form_label' htmlFor="state">
                                 Provincia
-                                <small className='checkout_form_label_error'>{""}</small>
-                                <select className='checkout_form_select' name="state" id="state" value={user ? user.state : null}>
+                                <select className='checkout_form_select' name="state" id="state" value={user ? user.state : ""} onChange={handleChange} >
                                     {provinciasArgentina.map(provincia => {
                                         return <option className='checkout_form_select_option' value={provincia}>{provincia}</option>
                                     })}
@@ -124,25 +150,22 @@ export const Checkout = () => {
                             </label>
                             <label className='checkout_form_label' htmlFor="cp">
                                 Código Postal
-                                <small className='checkout_form_label_error'>{""}</small>
-                                <input className='checkout_form_input' type="text" name='cp' />
+                                <input className='checkout_form_input' type="text" name='cp' onChange={handleChange} />
                             </label>
                         </div>
                         <div className='checkout_form_inputs_container'>
                             <label className='checkout_form_label' htmlFor="phone">
                                 Teléfono
-                                <small className='checkout_form_label_error'>{""}</small>
-                                <input className='checkout_form_input' type="text" name='phone' />
+                                <input className='checkout_form_input' type="text" name='phone' onChange={handleChange} />
                             </label>
                             <label className='checkout_form_label' htmlFor="email">
                                 Email
-                                <small className='checkout_form_label_error'>{""}</small>
-                                <input className='checkout_form_input' type="text" name='email' value={user ? user.email : null} />
+                                <input className='checkout_form_input' type="text" name='email' value={user ? user.email : ""} onChange={handleChange} />
                             </label>
                         </div>
                         <label className='checkout_form_label' htmlFor="note">
                             Nota Adicional:
-                            <input className='checkout_form_input' type="text" name='note' />
+                            <input className='checkout_form_input' type="text" name='note' onChange={handleChange} />
                         </label>
                     </form>
                 </div>

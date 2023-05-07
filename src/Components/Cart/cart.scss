@@ -56,12 +56,25 @@
             flex-direction: column;
             &_list{
                 overflow-y: scroll;
+                    &::-webkit-scrollbar{
+                    width: 10px;
+                    height: 10px;
+                }
+                &::-webkit-scrollbar-track {
+                    background-color: #f1f1f1;
+                }
+                &::-webkit-scrollbar-thumb{
+                    background-color: #000;
+                    border-radius: 4px;
+                    border-right: 2px solid #fafafa;
+                }
             }
             &_empty{
                 width: 100%;
                 text-align: center;
                 padding-top: 50%;
             }
+            
         }    
     &_foot{
         width: 100%;
@@ -142,27 +155,30 @@
     .cart_page{
     padding-left: 2%;
     padding-right: 2%;
+    padding-top: 20%;
     }
     .cart{
 
     &_heads{
         grid-template-columns: 15% 45% 20% 20%;
+        opacity: 0;
         &_titles{
             font-size: 15px;
         }
     }
     &_foot{
-        width: 100%;
-        height: 100%;
-        display: flex;
-        justify-content: space-between;
-        padding-top: 2%;
-        padding-bottom: 5%;
+        flex-wrap: wrap;
+        gap: 20px;
         &_btnReset{
-            width: 40%;   
+            width: 100%;   
         }
         &_total{
-            width: 40%;
+            width: 100%;
+            &_price{
+                text-align: center;
+                font-size: 25px;
+                font-weight: 700;
+            }
         }
     }
 }

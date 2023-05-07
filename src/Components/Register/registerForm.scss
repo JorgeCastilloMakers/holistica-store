@@ -97,3 +97,20 @@
     }
     }
 }
+
+@media (max-width: 878px){
+    .register{
+        flex-wrap: wrap;
+        width: 100%;
+        &_logo{
+            opacity: 0;
+            max-width: 1px;
+        }
+        &_form{
+            width: 90%;
+            &_btn{
+                width: 60%;
+            }
+        }
+    }
+}

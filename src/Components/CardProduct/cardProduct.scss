@@ -2,7 +2,7 @@
     width: 100%;
     max-width: 240px;
     height: 100%;
-    max-height: 470px;
+    max-height: 670px;
     display: flex;
     justify-content: flex-start;
     align-items: center;
@@ -64,7 +64,7 @@
 @media (max-width: 878px){
     .card_product{
         max-width: 420px;  
-        max-height: 570px;
+        max-height: 670px;
         padding-bottom: 5%;    
         
         &_image_container{

@@ -214,3 +214,27 @@
 
 }
 
+@media (max-width: 878px){
+    .checkout{
+        padding-top: 30%;
+
+        &_container{
+            flex-wrap: wrap;
+        }
+        &_ticket_container{
+            width: 100%;
+        }
+        &_payMethods{
+            
+            &_labels{
+                flex-direction: column;
+                width: 100%;
+                gap: 20px;
+
+            }
+            &_label{
+                justify-content: flex-start;
+            }
+        }
+    }
+}

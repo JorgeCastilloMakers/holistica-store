@@ -116,3 +116,27 @@
     }
 
 }
+
+@media (max-width: 1300px){
+    .login{
+        width: 80%;
+        &_form{
+            width: 80%;
+        }
+    }
+}
+@media (max-width: 878px){
+    .login{
+        width: 80%;
+        &_form{
+            width: 80%;
+        }
+    }
+}
+
+
+@media (max-width: 678px){
+    .login{
+        width: 100%;
+    }
+}

@@ -59,7 +59,7 @@ export const CartItems = ({ clave, id, name, quantity, price, scent, image }) =>
 
 
     return (
-        <li key={clave} className='cart_item' >
+        <li key={id} className='cart_item' >
             <h5 className='cart_item_id'>#{id.substring(0, 5)}</h5>
             <div className='cart_item_product'>
                 <img className='cart_item_product_image' src={image} alt={name} />

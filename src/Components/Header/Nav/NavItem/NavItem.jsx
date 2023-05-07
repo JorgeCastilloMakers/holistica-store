@@ -1,5 +1,5 @@
 import './navItem.scss'
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 
 
 
@@ -16,7 +16,8 @@ export const NavItem = ({ children, openMenu, link }) => {
     }
     return (
         <>
-            <li className='nav_list'><a onClick={handleLinkClick} className='nav_item'>{children}</a></li>
+            <li className='nav_list'> <Link to={link} className='nav_item'>{children}</Link></li>
+            {/* <li className='nav_list'><a onClick={handleLinkClick} className='nav_item'>{children}</a></li> */}
         </>
     )
 }

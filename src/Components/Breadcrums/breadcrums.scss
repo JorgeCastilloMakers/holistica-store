@@ -41,12 +41,18 @@
 
 @media (max-width: 678px){
     .breadcrums{
-        padding-top: 5%;
-        &_category{
-            padding-left: 2%;
+        padding-top: 5%;        
+        &_title{
+            width: 30%;
+            font-size: 12px;
         }
+        &_category{
+            font-size: 12px;
+        }
+
         &_product{
             width: 100%;
+            font-size: 12px;
         }
     }
 

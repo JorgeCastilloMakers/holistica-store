@@ -89,7 +89,7 @@
                 &_button{
                     border: none;
                     background-color: transparent;
-                    font-size: 18px;
+                    font-size: 25px;
                     cursor: pointer;
                     transition: all 0.5s ease;
                         &:active{
@@ -140,8 +140,18 @@
     .detailsCard{
         flex-wrap: wrap;
         padding-top: 0;
+        &_scent_add{
+            flex-wrap: wrap;
+            gap: 20px;
+            &_label{
+                width: 100%;
+                justify-content: center;
+            }
+        }
     }
     .detailsCard_scent_add_btnAdd{
         padding-right: unset;
+        width: 100%;
+        justify-content: center;
     }
 }

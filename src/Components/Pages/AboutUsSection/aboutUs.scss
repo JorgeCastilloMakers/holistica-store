@@ -1,13 +1,13 @@
 .about_us{
     width: 100vw;
-    height: 100vh;
+    height: 100%;
     padding-top: 150px;
     padding-left: 6%;
     padding-right: 5%;
     background-image: url(../../../../src/assets/Images/about-us-bg.png);
     background-size: cover;
     background-repeat: no-repeat;
-        scroll-snap-align: start;
+    background-attachment: fixed;
     &_title{
         font-family: var(--font-play);
         font-weight: 900;

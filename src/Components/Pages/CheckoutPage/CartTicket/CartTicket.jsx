@@ -4,7 +4,7 @@ export const CartTicket = (product) => {
     const { productId, productName, productScent, productQuantity, productPrice } = product;
 
     return (
-        <div key={productId} className="ticket">
+        <div key={product} className="ticket">
             <div className='ticket_product'>
                 <h2 className='ticket_name'>{productName} -</h2>
                 <h2 className='ticket_scent'>{productScent}</h2>
