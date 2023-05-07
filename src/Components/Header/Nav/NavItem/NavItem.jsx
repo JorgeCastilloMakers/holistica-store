@@ -16,7 +16,7 @@ export const NavItem = ({ children, openMenu, link }) => {
     }
     return (
         <>
-            <li className='nav_list'> <Link to={link} className='nav_item'>{children}</Link></li>
+            <li className='nav_list'> <Link onClick={handleLinkClick} className='nav_item'> {children}</Link></li>
             {/* <li className='nav_list'><a onClick={handleLinkClick} className='nav_item'>{children}</a></li> */}
         </>
     )
