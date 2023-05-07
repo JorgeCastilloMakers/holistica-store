@@ -25,3 +25,4 @@ dist-ssr
 
 # Ignorar archivo .env
 .env
+.vercel
