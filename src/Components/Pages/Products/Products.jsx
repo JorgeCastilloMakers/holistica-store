@@ -4,7 +4,7 @@ import { CardProduct } from '../../CardProduct/CardProduct.jsx'
 import { useState, useEffect } from 'react'
 import { Filtros } from '../../Filtros/Filtros';
 import { PaginationProducts } from '../../Pagination/PaginationProducts';
-import { Breadcrums } from '../../BreadCrums/BreadCrums';
+import { Breadcrums } from '../../Breadcrums/Breadcrums.jsx';
 import { Modalmessage } from '../../ModalMessage/Modalmessage.jsx';
 import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css'
